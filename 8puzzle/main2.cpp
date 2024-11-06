@@ -8,7 +8,7 @@ using namespace std;
 class EightPuzzle {
   const static int board_dim = 3;
 
-  int arr[board_dim][board_dim] = {{1, 2, 3}, {4, 5, 6}, {0, 7, 8}};
+  int arr[board_dim][board_dim] = {{2, 3, 5}, {1, 0, 4}, {7, 8, 6}};
   map<int, vector<string>> valid_moves = {
       {1, {"R", "D"}},      {2, {"L", "R", "D"}},      {3, {"L", "D"}},
       {4, {"U", "R", "D"}}, {5, {"U", "R", "D", "L"}}, {6, {"U", "D", "L"}},
