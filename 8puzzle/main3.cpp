@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <queue>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -9,7 +10,7 @@ using namespace std;
 class EightPuzzle {
   const static int board_dim = 3;
 
-  vector<vector<int>> arr = {{2, 3, 5}, {1, 0, 4}, {7, 8, 6}};
+  vector<vector<int>> arr = {{1, 3, 6}, {5, 0, 2}, {4, 7, 8}};
   const vector<vector<int>> goal = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
   const map<int, vector<char>> valid_moves = {
       {1, {'R', 'D'}},      {2, {'L', 'R', 'D'}},      {3, {'L', 'D'}},
@@ -50,14 +51,22 @@ private:
   }
 
   void bfs(queue<pair<vector<vector<int>>, string>> &q) {
+    set<vector<vector<int>>> visited;
+
     while (!q.empty()) {
       vector<vector<int>> _state = q.front().first;
       string current_path = q.front().second;
       q.pop();
 
+      if (visited.find(_state) != visited.end()) {
+        continue;
+      }
+      visited.insert(_state);
+
       if (check_win(_state)) {
         if (!current_path.empty()) {
-          cout << "Path: " << current_path << endl;
+          cout << "\nMoves: " << current_path
+               << "\nNumber of moves: " << current_path.size() << endl;
           trace_path(current_path);
         } else {
           cout << "Already at goal state\n";
