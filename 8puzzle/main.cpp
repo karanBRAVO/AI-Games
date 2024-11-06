@@ -9,7 +9,7 @@ class EightPuzzle {
 
   int arr[board_dim][board_dim] = {{1, 2, 3}, {5, 6, 0}, {7, 8, 4}};
   map<int, vector<string>> valid_moves = {
-      {1, {"L", "D"}},      {2, {"L", "R", "D"}},      {3, {"L", "D"}},
+      {1, {"R", "D"}},      {2, {"L", "R", "D"}},      {3, {"L", "D"}},
       {4, {"U", "R", "D"}}, {5, {"U", "R", "D", "L"}}, {6, {"U", "D", "L"}},
       {7, {"U", "R"}},      {8, {"U", "R", "L"}},      {9, {"U", "L"}}};
 
@@ -92,7 +92,10 @@ private:
     for (int i = 0; i < board_dim; i++) {
       for (int j = 0; j < board_dim; j++) {
         c += 1;
-        if (board[i][j] != j) {
+        if (board[i][j] != c) {
+          if (c == 9 && board[i][j] == 0) {
+            continue;
+          }
           return false;
         }
       }
